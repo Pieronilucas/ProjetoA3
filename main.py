@@ -131,7 +131,7 @@ elif escolha == 'Atualizar usuário':
 
 elif escolha == 'Realizar denuncia':
     st.image("https://i.imgur.com/2x5L8Gb.png")
-    st.title('Agendar visita do fiscal')
+    st.title('Realizar denúncia')
     st.write('Agende uma visita do fiscal para garantir que a segurança de todos esteja em dia. Com a denúncia em mãos, iremos averiguar com cuidado o local e tomar as melhores medidas cabíveis para assegurar que o ambiente não seja propício ao mosquito. Salve a você e a quem você ama!')
     st.divider()
     with st.form(key='add_user_form'):
