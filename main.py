@@ -217,6 +217,7 @@ elif escolha == 'Consultar sintomas':
 
     st.title('Consulta Simples de Sintomas de Dengue')
     st.write('Marque os sintomas que você está sentindo.')
+    st.write('Lembre-se que esse teste não substitui um médico e o mesmo deve ser consultado para o diagnóstico real.')
 
     st.header('Sintomas Comuns')
     for sintoma in sintomas_dengue:
@@ -239,7 +240,7 @@ elif escolha == 'Consultar sintomas':
             resultado = 'Caso indeterminado. Favor procurar auxílio médico para maiores investigações.'
         
         st.subheader('Resultado da Consulta:')
-        st.write(resultado)
+        st.info(resultado)
 
 elif escolha == 'Área do fiscal':
     st.subheader('INSIRA A SENHA DE ADMINISTRADOR PARA PROSSEGUIR.')
