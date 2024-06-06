@@ -97,6 +97,7 @@ if escolha == 'Agendar visita':
         submit_button = st.form_submit_button(label='Agendar')
 
         if submit_button:
+            # verifica se o cpf é valido e adiciona dados a tabela do bd
             if verificador.verificar_cpf(cpf):
                 data_str = data.strftime('%d-%m-%Y')
                 hora_str = hora.strftime('%H:%M')
@@ -140,8 +141,10 @@ elif escolha == 'Atualizar usuário':
 
     cpf = st.text_input('Insira o CPF do usuário a ser atualizado')
     if len(cpf) != 0:
+        # chama a função de buscar os dados do úsuario através de seu cpf
         user = controlador.usuario_por_cpf(cpf)
         if user:
+            # caso encontrado, abre novamente os dados básicos para serem redefinidos
             with st.form(key='update_user_form'):
                 c1, c2, c3 = st.columns(3)
                 with c1:
@@ -165,6 +168,7 @@ elif escolha == 'Atualizar usuário':
                     complemento = st.text_input('Complemento', user[8])
                 submit_button = st.form_submit_button(label='Atualizar')
 
+                # adiciona novamente ao bd
                 if submit_button:
                     resultado = controlador.atualizar_user(cpf, nome, celular, email, cep, rua, bairro, numero, complemento)
                     st.success(resultado)
@@ -239,6 +243,7 @@ elif escolha == 'Realizar denuncia':
         submit_button_complaint = st.form_submit_button(label='DENUNCIAR')
 
         if submit_button_complaint:
+            # verifica se o cpf é valido e adiciona dados a tabela do bd
             if verificador.verificar_cpf(cpf_denuncia):
                 protocolo = random.randint(1, 9999)
                 data_str = data.strftime('%d-%m-%Y')
@@ -281,7 +286,7 @@ elif escolha == 'Consultar sintomas':
     contagem_grave = []
 
     st.title('Consulta Simples de Sintomas de Dengue')
-    st.write('Marque os sintomas que você está sentindo.')
+    st.write('Marque os sintomas que você está sentindo. Não se esqueça que esse teste não substitui a avalição médica e deve ser considerado apenas como um parâmetro, não um diagnóstico')
     baseboard_html = """
     <style>
         .footer {
@@ -318,6 +323,7 @@ elif escolha == 'Consultar sintomas':
                 contagem_grave.append(sintoma_grave)
     
     if st.button('Ver Resultado'):
+        # valores definidos como base para retornar as possibilidades
         if len(contagem_dengue) < 3:
             resultado = 'Provavelmente não é dengue. Procure auxílio médico para confirmação de qual a doença.'
         elif len(contagem_dengue) >= 3 and len(contagem_grave) == 0:
@@ -341,6 +347,7 @@ elif escolha == 'Área do fiscal':
         elif tipo_servico.startswith('1'):
                 st.title(':red[CONSULTA AGENDAMENTOS EM ABERTO]')         
                 st.write('Agendamentos em aberto')
+                # acessar a função de listagem de úsuarios 
                 usuarios = controlador.listar_usuarios()
                 if usuarios:
                     for user in usuarios:
@@ -353,6 +360,7 @@ elif escolha == 'Área do fiscal':
         elif tipo_servico.startswith('2'):
                 st.title(':red[CONSULTA DENUNCIAS EM ABERTO]')
                 st.write('Denúncias em aberto')
+                # acessar a função de listagem de denúncias
                 denuncias = controlador.listar_denuncias()
                 if denuncias:
                     for denuncia in denuncias:
