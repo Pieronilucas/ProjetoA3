@@ -8,8 +8,8 @@ class UserManagement:
         self.conn = sqlite3.connect(db_name)
         self.create_users_table()
         self.create_complaint_table()
-
-
+    
+    # criação de tabela de usuarios para agendamento
     def create_users_table(self):
         new_table_query = '''
         CREATE TABLE IF NOT EXISTS users (
@@ -30,7 +30,8 @@ class UserManagement:
         '''
         self.conn.execute(new_table_query)
         self.conn.commit()
-    
+
+    # criação de tabela para usuarios da denuncia
     def create_complaint_table(self):
         new_table_query = '''
         CREATE TABLE IF NOT EXISTS complaint (
@@ -50,7 +51,8 @@ class UserManagement:
         '''
         self.conn.execute(new_table_query)
         self.conn.commit()
-    
+
+    # função para adicionar dados recebidos das denuncias a table de denuncias
     def add_complainer(self, cpfDenunciante, nomeDenunciante, celularDenunciante, emailDenunciante, cepDenuncia, ruaDenuncia, BairroDenuncia, NumeroDenuncia, complementoDenuncia, data, hora, observacao):
         data_str = data.strftime('%d-%m-%Y')
         hora_str = hora.strftime('%H:%M:%S')
@@ -61,7 +63,8 @@ class UserManagement:
         self. conn.execute(add_complaint_query, (int(cpfDenunciante), nomeDenunciante, celularDenunciante, emailDenunciante, cepDenuncia, ruaDenuncia, BairroDenuncia, NumeroDenuncia, complementoDenuncia, data_str, hora_str, observacao))
         self.conn.commit()
         return 'Denúncia feita com sucesso!'
-
+    
+    # função para adicionar dados recebidos das denuncias a table de agendamento
     def add_user(self, cpf, nome, celular, email, cep, rua, bairro, numero, complemento, data, hora, servico, observacao):
         # cpf = input('Por favor, insira seu cpf: \n')
         data_str = data.strftime('%d-%m-%Y')
@@ -72,6 +75,7 @@ class UserManagement:
         # validador = VerificadorCPF(cpf)
         # if validador.verificar_cpf():
             # if not any(user['cpf'] == cpf for user in self.user_dados):
+        # verifica se usuario já existe no banco de dados
         if self.cpf_exists(cpf):
                 return 'CPF já cadastrado!'
             #     user = {
@@ -93,7 +97,7 @@ class UserManagement:
             self.conn.commit()
             return 'Usuário adicionado com sucesso!'
 
-
+    # função para verificar se cpf consta no banco de dados
     def cpf_exists(self, cpf):
         check_cpf_exists_query = '''
         SELECT * FROM users WHERE cpf = ?;
