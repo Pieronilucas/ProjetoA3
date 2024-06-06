@@ -179,7 +179,8 @@ elif escolha == 'Atualizar usuário':
 elif escolha == 'Realizar denuncia':
     st.image("https://i.imgur.com/2x5L8Gb.png")
     st.title('Agendar visita do fiscal')
-    st.write('Agende uma visita do fiscal para garantir que sua residência ou estabelecimento esteja livre de focos do mosquito da dengue. Nossa equipe realizará uma inspeção detalhada, aplicará medidas preventivas e fornecerá orientações essenciais para manter o ambiente seguro e saudável. Preencha o formulário abaixo para marcar uma data e hora conveniente para a visita.')
+    st.write('Realize abaixo sua denúncia. Proteja a você e a quem você ama. Dengue mata!')
+    st.write('Uma equipe especializada irá se dirigir ao local a fim de realizar a limpeza da forma mais adequada e proteger a você e a quem você ama.')
     baseboard_html = """
     <style>
         .footer {
