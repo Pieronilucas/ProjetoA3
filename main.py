@@ -2,7 +2,6 @@ import streamlit as st
 from datetime import datetime
 from user_management import UserManagement
 from streamlit_option_menu import option_menu
-import streamlit.components.v1 as components
 from verificar_cpf import VerificadorCPF
 import random
 
@@ -32,6 +31,28 @@ if escolha == 'Agendar visita':
     st.image("https://i.imgur.com/2x5L8Gb.png")
     st.title('Agendar visita do fiscal')
     st.write('Agende uma visita do fiscal para garantir que sua residência ou estabelecimento esteja livre de focos do mosquito da dengue. Nossa equipe realizará uma inspeção detalhada, aplicará medidas preventivas e fornecerá orientações essenciais para manter o ambiente seguro e saudável. Preencha o formulário abaixo para marcar uma data e hora conveniente para a visita.')
+    baseboard_html = """
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            color: #000;
+            text-align: center;
+            padding: 2px 0;
+            font-size: 12px;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Ensure footer stays on top */
+        }
+    </style>
+    <div class="footer">
+        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana e Lucas Augusto</p>
+    </div>
+    """
+    st.markdown(baseboard_html, unsafe_allow_html=True)
+    
     st.divider()
     with st.form(key='agendar_visita'):
         st.subheader('Dados de usuário')
@@ -95,6 +116,28 @@ if escolha == 'Agendar visita':
 
 elif escolha == 'Atualizar usuário':
     st.title(':red[ATUALIZAR USUÁRIO]')
+    baseboard_html = """
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            color: #000;
+            text-align: center;
+            padding: 2px 0;
+            font-size: 12px;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Ensure footer stays on top */
+        }
+    </style>
+    <div class="footer">
+        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana e Lucas Augusto</p>
+    </div>
+    """
+    st.markdown(baseboard_html, unsafe_allow_html=True)
+
     cpf = st.text_input('Insira o CPF do usuário a ser atualizado')
     if len(cpf) != 0:
         user = controlador.usuario_por_cpf(cpf)
@@ -131,8 +174,30 @@ elif escolha == 'Atualizar usuário':
 
 elif escolha == 'Realizar denuncia':
     st.image("https://i.imgur.com/2x5L8Gb.png")
-    st.title('Realizar denúncia')
-    st.write('Agende uma visita do fiscal para garantir que a segurança de todos esteja em dia. Com a denúncia em mãos, iremos averiguar com cuidado o local e tomar as melhores medidas cabíveis para assegurar que o ambiente não seja propício ao mosquito. Salve a você e a quem você ama!')
+    st.title('Agendar visita do fiscal')
+    st.write('Agende uma visita do fiscal para garantir que sua residência ou estabelecimento esteja livre de focos do mosquito da dengue. Nossa equipe realizará uma inspeção detalhada, aplicará medidas preventivas e fornecerá orientações essenciais para manter o ambiente seguro e saudável. Preencha o formulário abaixo para marcar uma data e hora conveniente para a visita.')
+    baseboard_html = """
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            color: #000;
+            text-align: center;
+            padding: 2px 0;
+            font-size: 12px;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Ensure footer stays on top */
+        }
+    </style>
+    <div class="footer">
+        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana e Lucas Augusto</p>
+    </div>
+    """
+    st.markdown(baseboard_html, unsafe_allow_html=True)
+
     st.divider()
     with st.form(key='add_user_form'):
         st.subheader('Dados de usuário')
@@ -217,17 +282,40 @@ elif escolha == 'Consultar sintomas':
 
     st.title('Consulta Simples de Sintomas de Dengue')
     st.write('Marque os sintomas que você está sentindo.')
-    st.write('Lembre-se que esse teste não substitui um médico e o mesmo deve ser consultado para o diagnóstico real.')
-
-    st.header('Sintomas Comuns')
-    for sintoma in sintomas_dengue:
-        if st.checkbox(sintoma):
-            contagem_dengue.append(sintoma)
+    baseboard_html = """
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            color: #000;
+            text-align: center;
+            padding: 2px 0;
+            font-size: 12px;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Ensure footer stays on top */
+        }
+    </style>
+    <div class="footer">
+        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana e Lucas Augusto</p>
+    </div>
+    """
+    st.markdown(baseboard_html, unsafe_allow_html=True)
     
-    st.header('Sintomas Graves')
-    for sintoma_grave in sintomas_graves:
-        if st.checkbox(sintoma_grave):
-            contagem_grave.append(sintoma_grave)
+    st.divider()
+    c1, c2 = st.columns(2)
+    with c1:
+        st.header('Sintomas Comuns')
+        for sintoma in sintomas_dengue:
+            if st.checkbox(sintoma):
+                contagem_dengue.append(sintoma)
+    with c2:
+        st.header('Sintomas Graves')
+        for sintoma_grave in sintomas_graves:
+            if st.checkbox(sintoma_grave):
+                contagem_grave.append(sintoma_grave)
     
     if st.button('Ver Resultado'):
         if len(contagem_dengue) < 3:
