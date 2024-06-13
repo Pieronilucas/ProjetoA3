@@ -16,7 +16,7 @@ with st.sidebar:
         menu_title = 'Serviços',
         menu_icon = "https://i.imgur.com/FWvPyTW.png",
         options = ['Agendar visita','Atualizar usuário','Realizar denuncia','Consultar sintomas', 'Área do fiscal'],
-        icons = ['https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png'],
+        # icons = ['https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png'],
     )
 
 css = r'''
@@ -48,7 +48,7 @@ if escolha == 'Agendar visita':
         }
     </style>
     <div class="footer">
-        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana e Lucas Augusto</p>
+        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana, Felipe Pardini e Lucas Augusto</p>
     </div>
     """
     st.markdown(baseboard_html, unsafe_allow_html=True)
@@ -69,12 +69,12 @@ if escolha == 'Agendar visita':
         st.divider()
         st.subheader('Endereço da visita')
         c5, c6, c67 = st.columns(3)
+        with c67:
+            bairro = st.text_input('Bairro', placeholder= 'Bairro')
         with c5:
             cep = st.text_input('CEP', placeholder= 'CEP da sua rua sem pontos ou hífens')
         with c6:
             rua = st.text_input('Rua', placeholder= 'Logradouro')
-        with c67:
-            bairro = st.text_input('Bairro', placeholder= 'Bairro')
         c7, c8 = st.columns(2)
         with c7:
             numero = st.text_input('Número')
@@ -177,10 +177,9 @@ elif escolha == 'Atualizar usuário':
 
 
 elif escolha == 'Realizar denuncia':
-    st.image("https://i.imgur.com/2x5L8Gb.png")
-    st.title('Agendar visita do fiscal')
-    st.write('Realize abaixo sua denúncia. Proteja a você e a quem você ama. Dengue mata!')
-    st.write('Uma equipe especializada irá se dirigir ao local a fim de realizar a limpeza da forma mais adequada e proteger a você e a quem você ama.')
+    st.image("https://i.imgur.com/lPyCbGb.png")
+   st.title('Denunciar ambiente sujo')
+    st.write('Contribua diretamente na luta contra a dengue. Ao reportar esses ambientes, você ajuda as autoridades a tomarem medidas preventivas e corretivas, protegendo a saúde da comunidade. Preencha o formulário com o máximo de detalhes possíveis para garantir uma rápida e eficiente ação das equipes de controle de endemias. Sua participação é fundamental para manter nossa cidade limpa e segura.')
     baseboard_html = """
     <style>
         .footer {
@@ -198,7 +197,7 @@ elif escolha == 'Realizar denuncia':
         }
     </style>
     <div class="footer">
-        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana e Lucas Augusto</p>
+        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana, Felipe Pardini e Lucas Augusto</p>
     </div>
     """
     st.markdown(baseboard_html, unsafe_allow_html=True)
@@ -237,6 +236,8 @@ elif escolha == 'Realizar denuncia':
             data = st.date_input(label='Data', min_value=datetime.today().date(), format='DD/MM/YYYY',)
         with c10:
             hora = st.time_input('Hora', step=3600)
+        st.divider()
+        st.file_uploader('Anexar fotos')
         st.divider()
         st.subheader('Informações extras')
         info_extra_denuncia = st.text_input('Observações', placeholder = 'Adicione qualquer observação relevante')
@@ -286,6 +287,7 @@ elif escolha == 'Consultar sintomas':
     contagem_dengue = []
     contagem_grave = []
 
+    st.image('https://i.imgur.com/CGSWTgC.png')
     st.title('Consulta Simples de Sintomas de Dengue')
     st.write('Marque os sintomas que você está sentindo. Não se esqueça que esse teste não substitui a avalição médica e deve ser considerado apenas como um parâmetro, não um diagnóstico')
     baseboard_html = """
