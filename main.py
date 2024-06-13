@@ -178,7 +178,7 @@ elif escolha == 'Atualizar usuário':
 
 elif escolha == 'Realizar denuncia':
     st.image("https://i.imgur.com/lPyCbGb.png")
-   st.title('Denunciar ambiente sujo')
+    st.title('Denunciar ambiente sujo')
     st.write('Contribua diretamente na luta contra a dengue. Ao reportar esses ambientes, você ajuda as autoridades a tomarem medidas preventivas e corretivas, protegendo a saúde da comunidade. Preencha o formulário com o máximo de detalhes possíveis para garantir uma rápida e eficiente ação das equipes de controle de endemias. Sua participação é fundamental para manter nossa cidade limpa e segura.')
     baseboard_html = """
     <style>
