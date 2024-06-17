@@ -15,7 +15,7 @@ with st.sidebar:
     escolha = option_menu(
         menu_title = 'Serviços',
         menu_icon = "https://i.imgur.com/FWvPyTW.png",
-        options = ['Agendar visita','Atualizar usuário','Realizar denuncia','Consultar sintomas', 'Área do fiscal'],
+        options = ['Agendar visita','Realizar denuncia','Consultar sintomas', 'Área do fiscal'],
         # icons = ['https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png', 'https://i.imgur.com/FWvPyTW.png'],
     )
 
@@ -134,14 +134,14 @@ elif escolha == 'Atualizar usuário':
         }
     </style>
     <div class="footer">
-        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana e Lucas Augusto</p>
+        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana, Felipe Pardini e Lucas Augusto</p>
     </div>
     """
     st.markdown(baseboard_html, unsafe_allow_html=True)
 
     cpf = st.text_input('Insira o CPF do usuário a ser atualizado')
     if len(cpf) != 0:
-        # chama a função de buscar os dados do úsuario através de seu cpf
+        # chama a função de buscar os dados do usuário através de seu cpf
         user = controlador.usuario_por_cpf(cpf)
         if user:
             # caso encontrado, abre novamente os dados básicos para serem redefinidos
@@ -247,7 +247,7 @@ elif escolha == 'Realizar denuncia':
         if submit_button_complaint:
             # verifica se o cpf é valido e adiciona dados a tabela do bd
             if verificador.verificar_cpf(cpf_denuncia):
-                protocolo = random.randint(1, 9999)
+                #protocolo = random.randint(1, 9999)
                 data_str = data.strftime('%d-%m-%Y')
                 hora_str = hora.strftime('%H:%M')
                 # print('\tCADASTREI: ')
@@ -258,7 +258,7 @@ elif escolha == 'Realizar denuncia':
                 resultado_denuncia = controlador.add_complainer(cpf_denuncia, nome_denuncia, celular_denuncia, email_denuncia, cep_denuncia, rua_denuncia, bairro_denuncia, numero_denuncia, complemento_denuncia, data, hora, info_extra_denuncia)
                 # print('\t', resultado)
                 # print(controlador.user_dados)
-                st.success(f'Sua denúncia foi procoloda seguindo o protocolo de número {protocolo}. Agradecemos por colaborar no combate à dengue. ')
+                st.success(f'Agradecemos sua denúncia! Sua participação é essencial para o combate à dengue em nossa comunidade. Nossa equipe tomará as medidas necessárias o mais rápido possível para resolver a situação.')
                 st.success(resultado_denuncia)
             else:
                 st.error('CPF inválido')
@@ -307,7 +307,7 @@ elif escolha == 'Consultar sintomas':
         }
     </style>
     <div class="footer">
-        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana e Lucas Augusto</p>
+        <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana, Felipe Pardini e Lucas Augusto</p>
     </div>
     """
     st.markdown(baseboard_html, unsafe_allow_html=True)
@@ -344,10 +344,54 @@ elif escolha == 'Área do fiscal':
     senha_forte = 'loudeco'
     senha_usuario = st.text_input('Senha agendamentos', type='password')
     if senha_forte == senha_usuario:
-        tipo_servico = st.selectbox('Tipo de serviço', ['0 - Selecione o serviço','1 - Visitas', '2 - Denuncias'])
+        tipo_servico = st.selectbox('Tipo de serviço', ['0 - Selecione o serviço','1 - Visitas', '2 - Denuncias', '3 - Atualizar dados de usuario'])
         if tipo_servico.startswith('0'):
+            baseboard_html = """
+            <style>
+                .footer {
+                    position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    background-color: #f1f1f1;
+                    color: #000;
+                    text-align: center;
+                    padding: 2px 0;
+                    font-size: 12px;
+                    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+                    z-index: 1000; /* Ensure footer stays on top */
+                }
+            </style>
+            <div class="footer">
+                <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana, Felipe Pardini e Lucas Augusto</p>
+            </div>
+            """
+            st.markdown(baseboard_html, unsafe_allow_html=True)
+
             pass
         elif tipo_servico.startswith('1'):
+                baseboard_html = """
+                <style>
+                    .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        background-color: #f1f1f1;
+                        color: #000;
+                        text-align: center;
+                        padding: 2px 0;
+                        font-size: 12px;
+                        box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+                        z-index: 1000; /* Ensure footer stays on top */
+                    }
+                </style>
+                <div class="footer">
+                    <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana, Felipe Pardini e Lucas Augusto</p>
+                </div>
+                """
+                st.markdown(baseboard_html, unsafe_allow_html=True)
+
                 st.title(':red[CONSULTA AGENDAMENTOS EM ABERTO]')         
                 st.write('Agendamentos em aberto')
                 # acessar a função de listagem de úsuarios 
@@ -361,6 +405,28 @@ elif escolha == 'Área do fiscal':
                 else:
                     st.info('Nenhum agendamento cadastrado.')
         elif tipo_servico.startswith('2'):
+                baseboard_html = """
+                <style>
+                    .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        background-color: #f1f1f1;
+                        color: #000;
+                        text-align: center;
+                        padding: 2px 0;
+                        font-size: 12px;
+                        box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+                        z-index: 1000; /* Ensure footer stays on top */
+                    }
+                </style>
+                <div class="footer">
+                    <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana, Felipe Pardini e Lucas Augusto</p>
+                </div>
+                """
+                st.markdown(baseboard_html, unsafe_allow_html=True)
+
                 st.title(':red[CONSULTA DENUNCIAS EM ABERTO]')
                 st.write('Denúncias em aberto')
                 # acessar a função de listagem de denúncias
@@ -372,6 +438,67 @@ elif escolha == 'Área do fiscal':
                         st.info(denuncia)
                 else:
                     st.info('Nenhuma denúncia cadastrada.')
+
+        elif tipo_servico.startswith('3'):       
+            st.title(':red[ATUALIZAR USUÁRIO]')
+            baseboard_html = """
+            <style>
+                .footer {
+                    position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    background-color: #f1f1f1;
+                    color: #000;
+                    text-align: center;
+                    padding: 2px 0;
+                    font-size: 12px;
+                    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+                    z-index: 1000; /* Ensure footer stays on top */
+                }
+            </style>
+            <div class="footer">
+                <p>&copy; Lucas Pieroni, Rafael Fonseca, Kenner Henrique, Pedro Santos, Bruno Santana, Felipe Pardini e Lucas Augusto</p>
+            </div>
+            """
+            st.markdown(baseboard_html, unsafe_allow_html=True)
+
+            cpf = st.text_input('Insira o CPF do usuário a ser atualizado')
+            if len(cpf) != 0:
+                # chama a função de buscar os dados do úsuario através de seu cpf
+                user = controlador.usuario_por_cpf(cpf)
+                if user:
+                    # caso encontrado, abre novamente os dados básicos para serem redefinidos
+                    with st.form(key='update_user_form'):
+                        c1, c2, c3 = st.columns(3)
+                        with c1:
+                            nome = st.text_input('Novo nome', user[1])
+                        with c2:
+                            celular = st.text_input('Novo celular', user[2])
+                        with c3:
+                            email = st.text_input('Novo e-mail', user[3])
+                        st.divider()
+                        c4, c5, c6 = st.columns(3)
+                        with c4:
+                            cep = st.text_input('Novo CEP', user[4])
+                        with c5:
+                            rua = st.text_input('Novo Logradouro', user[5])
+                        with c6:
+                            bairro = st.text_input('Novo Bairro', user[6])
+                        c7, c8 = st.columns(2)
+                        with c7:
+                            numero = st.text_input('Novo número', user[7])
+                        with c8:
+                            complemento = st.text_input('Complemento', user[8])
+                        submit_button = st.form_submit_button(label='Atualizar')
+
+                        # adiciona novamente ao bd
+                        if submit_button:
+                            resultado = controlador.atualizar_user(cpf, nome, celular, email, cep, rua, bairro, numero, complemento)
+                            st.success(resultado)
+                else:
+                    st.error('Usuário não encontrado')
+
         else:
             st.info('')
     elif senha_usuario:
