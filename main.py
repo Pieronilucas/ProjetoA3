@@ -328,13 +328,14 @@ elif escolha == 'Consultar sintomas':
     if st.button('Ver Resultado'):
         # valores definidos como base para retornar as possibilidades
         if len(contagem_dengue) < 3:
-            resultado = 'Provavelmente não é dengue. Procure auxílio médico para confirmação de qual a doença.'
+            resultado = 'Os sintomas que assinalou têm baixa probabilidade de serem causados por Dengue.'
+            ' No entanto, é importante monitorar sua saúde e, se os sintomas persistirem ou se agravarem, consulte um clínico geral para um diagnóstico mais preciso e orientações adequadas'
         elif len(contagem_dengue) >= 3 and len(contagem_grave) == 0:
-            resultado = 'Possível caso de dengue. Procure o posto mais próximo para mais instruções.'
+            resultado = 'Os sintomas que assinalou são característicos de Dengue clássica, mas você precisa consultar um clínico geral para confirmar o diagnóstico e iniciar os tratamento corretos'
         elif len(contagem_dengue) >= 3 and len(contagem_grave) >= 1:
-            resultado = 'Possível caso de dengue hemorrágica! Procure ajuda médica o mais breve possível.'
+            resultado = 'Os sintomas que assinalou são característicos de Dengue henorrágica, mas você precisa consultar um clínico geralo mais breve possível para confirmar o diagnóstico e iniciar os tratamento corretos.'
         else:
-            resultado = 'Caso indeterminado. Favor procurar auxílio médico para maiores investigações.'
+            resultado = ''Caso indeterminado. Favor procurar auxílio médico para maiores investigações.'
         
         st.subheader('Resultado da Consulta:')
         st.info(resultado)
