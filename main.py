@@ -333,7 +333,7 @@ elif escolha == 'Consultar sintomas':
         elif len(contagem_dengue) >= 3 and len(contagem_grave) == 0:
             resultado = 'Os sintomas que assinalou são característicos de Dengue clássica, mas você precisa consultar um clínico geral para confirmar o diagnóstico e iniciar os tratamento corretos'
         elif len(contagem_dengue) >= 3 and len(contagem_grave) >= 1:
-            resultado = 'Os sintomas que assinalou são característicos de Dengue henorrágica, mas você precisa consultar um clínico geralo mais breve possível para confirmar o diagnóstico e iniciar os tratamento corretos.'
+            resultado = 'Os sintomas que assinalou são característicos de Dengue hemorrágica, mas você precisa consultar um clínico geralo mais breve possível para confirmar o diagnóstico e iniciar os tratamento corretos.'
         else:
             resultado = 'Caso indeterminado. Favor procurar auxílio médico para maiores investigações.'
         
